@@ -43,6 +43,8 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'
+
+    - name: Install NPM dependencies and build Vue
       run: |
         npm install
         npm run build
