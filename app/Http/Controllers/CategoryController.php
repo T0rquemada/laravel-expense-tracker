@@ -10,7 +10,8 @@ class CategoryController extends Controller {
     public function create(Request $req) {
         try {
             $validated_data = $req->validate([
-                'title' => 'required|string|unique:category',
+                'title' => 'required|string',
+                'user_id' =>'required'
             ]);
 
             Category::create($validated_data);
@@ -21,5 +22,9 @@ class CategoryController extends Controller {
             error_log($e);
             return response()->json(['message' => 'Server error: ' . $e->getMessage()], 500);
         }
+    }
+
+    public function get_all() {
+
     }
 }

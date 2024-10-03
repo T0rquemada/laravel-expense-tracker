@@ -10,7 +10,7 @@ class NoteController extends Controller {
         DB::table($table)->insert([
             'user_id' => $data['user_id'],
             'amount' => $data['amount'],
-            'category' => $data['category'],
+            'category_id' => $data['category_id'],
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -21,7 +21,7 @@ class NoteController extends Controller {
             $validated_data = $req->validate([
                 'user_id' => 'required',
                 'amount' => 'required',
-                'category' => 'required',
+                'category_id' => 'required',
                 'type' => 'required'
             ]);
 

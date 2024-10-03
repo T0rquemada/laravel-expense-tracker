@@ -11,13 +11,13 @@ class NoteTest extends TestCase {
     use RefreshDatabase;
 
     public function test_create_expense_note(): void {
-        $user = User::factory()->create(); // Create user
-        $category = Category::factory()->create(); // Create category
+        $user = User::factory()->create(); 
+        $category = Category::factory()->create(['user_id' => $user->id]); 
 
-        $response = $this->post('/create_note', [
+        $response = $this->withoutMiddleware()->post('/create_note', [
                 'user_id' => $user->id,
                 'amount' => 100,
-                'category' => $category->id,
+                'category_id' => $category->id,
                 'type' => 'expenses'
         ]);
 
@@ -25,13 +25,13 @@ class NoteTest extends TestCase {
     }
 
     public function test_create_income_note(): void {
-        $user = User::factory()->create(); // Create user
-        $category = Category::factory()->create(); // Create category
+        $user = User::factory()->create(); 
+        $category = Category::factory()->create(['user_id' => $user->id]); 
 
-        $response = $this->post('/create_note', [
+        $response = $this->withoutMiddleware()->post('/create_note', [
                 'user_id' => $user->id,
                 'amount' => 1000,
-                'category' => $category->id,
+                'category_id' => $category->id,
                 'type' => 'incomes'
         ]);
 
@@ -39,7 +39,7 @@ class NoteTest extends TestCase {
     }
 
     public function test_handle_empty_data(): void {
-        $response = $this->post('/create_note', []);
+        $response = $this->withoutMiddleware()->post('/create_note', []);
         $response->assertStatus(422);
     }
 

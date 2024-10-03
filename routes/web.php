@@ -24,6 +24,7 @@ Route::get('/auto-login', [AuthController::class, 'auto_login']);
 
 // Categories interaction
 Route::post('/create_category', [CategoryController::class, 'create']);
+Route::get('/get_all_categories', [CategoryController::class, 'get_all']);
 
 // Expense / income notes interaction
 Route::post('/create_note', [NoteController::class, 'create']);

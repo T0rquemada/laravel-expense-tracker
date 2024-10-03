@@ -12,15 +12,16 @@ class CategoryTest extends TestCase {
     public function test_create_category(): void {
         $user = User::factory()->create(); // Create user
 
-        $response = $this->post('/create_category', [
+        $response = $this->withoutMiddleware()->post('/create_category', [
             'title' => 'food',
+            'user_id' => $user->id
         ]);
 
         $response->assertStatus(200);
     }
 
     public function test_handle_empty_data(): void {
-        $response = $this->post('/create_category', []);
+        $response = $this->withoutMiddleware()->post('/create_category', []);
         $response->assertStatus(422);
     }
 
