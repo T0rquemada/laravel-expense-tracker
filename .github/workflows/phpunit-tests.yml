@@ -1,4 +1,4 @@
-name: Run PHPUnit Tests
+name: Run PHPUnit tests
 
 on:
   push:
@@ -43,6 +43,17 @@ jobs:
 
     - name: Run migrations
       run: php artisan migrate --force
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Run Vue.js for views
+      run: npm run dev
 
     - name: Run PHPUnit tests
       run: php artisan test
