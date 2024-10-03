@@ -53,7 +53,7 @@ jobs:
       run: npm install
 
     - name: Run Vue.js for views
-      run: npm run dev
+      run: npm run build
 
     - name: Run PHPUnit tests
       run: php artisan test
