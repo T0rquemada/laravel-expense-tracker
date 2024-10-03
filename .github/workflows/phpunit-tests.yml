@@ -6,7 +6,7 @@ on:
       - main 
 
 jobs:
-  prepare_environment:
+  tests:
     runs-on: ubuntu-latest
 
     services:
@@ -49,12 +49,5 @@ jobs:
         npm install
         npm run build
 
-  run-tests:
-    runs-on: ubuntu-latest
-    needs: prepare_environment
-
-    steps:
-    - uses: actions/checkout@v3
-    
     - name: Run PHPUnit tests
       run: php artisan test
