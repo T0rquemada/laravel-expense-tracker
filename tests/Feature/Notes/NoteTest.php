@@ -4,6 +4,7 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class NoteTest extends TestCase {
@@ -11,11 +12,12 @@ class NoteTest extends TestCase {
 
     public function test_create_expense_note(): void {
         $user = User::factory()->create(); // Create user
+        $category = Category::factory()->create(); // Create category
 
         $response = $this->post('/create_note', [
                 'user_id' => $user->id,
                 'amount' => 100,
-                'category' => 'food',
+                'category' => $category->id,
                 'type' => 'expenses'
         ]);
 
@@ -24,11 +26,12 @@ class NoteTest extends TestCase {
 
     public function test_create_income_note(): void {
         $user = User::factory()->create(); // Create user
+        $category = Category::factory()->create(); // Create category
 
         $response = $this->post('/create_note', [
                 'user_id' => $user->id,
                 'amount' => 1000,
-                'category' => 'salary',
+                'category' => $category->id,
                 'type' => 'incomes'
         ]);
 

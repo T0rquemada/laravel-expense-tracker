@@ -13,18 +13,20 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('amount');
-            $table->string('category');
+            $table->unsignedBigInteger('category');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category')->references('id')->on('category')->onDelete('cascade');
         });
 
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('amount');
-            $table->string('category');
+            $table->unsignedBigInteger('category');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category')->references('id')->on('category')->onDelete('cascade');
         });
     }
 

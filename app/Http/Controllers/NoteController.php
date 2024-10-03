@@ -21,7 +21,7 @@ class NoteController extends Controller {
             $validated_data = $req->validate([
                 'user_id' => 'required',
                 'amount' => 'required',
-                'category' => 'required|string',
+                'category' => 'required',
                 'type' => 'required'
             ]);
 
